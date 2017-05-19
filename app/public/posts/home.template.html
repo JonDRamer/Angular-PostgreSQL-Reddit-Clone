@@ -1,0 +1,158 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand">Reddit Clone</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+
+    <div class="pull-right">
+        <p><a class="btn btn-info" ng-click="$ctrl.toggleForm()">New Post</a></p>
+    </div>
+
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active">
+            <input type="search" class="form-control input-sm search-form" ng-model="searchText" placeholder="Search">
+        </li>
+        <div class="form-inline">
+            <label for="sort"> Sort by </label>
+            <select ng-model="$ctrl.sortBy" class="form-control" id="sort">
+              <option value="-created_at">Newest</option>
+              <option value="created_at">Oldest</option>
+              <option value="-vote_count">Votes</option>
+              <option value="title">Title</option>
+            </select>
+        </div>
+    </ul>
+
+    <!--------------    New Post Form    ----------->
+    <div class="row">
+        <div class="col-md-8 ">
+
+            <form name="$ctrl.newPost" ng-show="$ctrl.form" novalidate>
+
+                <!--      Post Title       -->
+                <div  ng-class="{'has-error' : $ctrl.newPost.title.$dirty && $ctrl.newPost.title.$invalid,
+                                'has-success': $ctrl.newPost.title.$valid}">
+                    <label for="title">Title</label>
+                    <input name="title" id="title" class="form-control" ng-model="$ctrl.post.title" ng-minlength="3" ng-maxlength="20" required>
+                    <div class="error" ng-show="$ctrl.newPost.title.$dirty && $ctrl.newPost.title.$invalid">
+                        <small class="error" ng-show="$ctrl.newPost.title.$error.required">
+                            A post title is required
+                        </small>
+                        <small class="error" ng-show="$ctrl.newPost.title.$error.minlength">
+                            Post title must be at least 3 characters
+                        </small>
+                        <small class="error" ng-show="$ctrl.newPost.title.$error.maxlength">
+                            Post title cannot be longer than 20 characters
+                        </small>
+                    </div>
+                </div>
+
+                <!--      Post Description       -->
+                <div ng-class="{'has-error' : $ctrl.newPost.body.$dirty && $ctrl.newPost.body.$invalid,
+                                'has-success': $ctrl.newPost.body.$valid}">
+                    <label for="body">Body</label>
+                    <textarea name="body" id="body" class="form-control" ng-model="$ctrl.post.body" ng-minlength="3" required></textarea>
+                    <div class="error" ng-show="$ctrl.newPost.body.$dirty && $ctrl.newPost.body.$invalid">
+                        <small class="error" ng-show="$ctrl.newPost.body.$error.required">
+                            Post body is required
+                        </small>
+                        <small class="error" ng-show="$ctrl.newPost.body.$error.minlength">
+                            Post body is required to be at least 3 characters
+                        </small>
+                    </div>
+                </div>
+
+                <!--      Post Author       -->
+                <div ng-class="{'has-error' : $ctrl.newPost.author.$dirty && $ctrl.newPost.author.$invalid,
+                                'has-success': $ctrl.newPost.author.$valid}">
+                    <label for="author">Author</label>
+                    <input name="author" id="author" class="form-control" ng-model="$ctrl.post.author" ng-minlength="3" ng-maxlength="20" required>
+                    <div class="error" ng-show="$ctrl.newPost.author.$dirty && $ctrl.newPost.author.$invalid">
+                        <small class="error" ng-show="$ctrl.newPost.author.$error.required">
+                            Author name is required.
+                        </small>
+                        <small class="error" ng-show="$ctrl.newPost.author.$error.minlength">
+                            Author name is required to be at least 3 characters
+                        </small>
+                        <small class="error" ng-show="$ctrl.newPost.author.$error.maxlength">
+                            Author name cannot be longer than 20 characters
+                        </small>
+                    </div>
+                </div>
+
+                <!--      Post ImageUrl       -->
+                <div ng-class="{'has-error' : $ctrl.newPost.image_url.$dirty && $ctrl.newPost.image_url.$invalid,
+                                'has-success': $ctrl.newPost.image_url.$valid}">
+                    <label for="image-url">Image URL</label>
+                    <input name="image_url" id="image-url" class="form-control" ng-model="$ctrl.post.image_url" ng-minlength="3" required>
+                    <div class="error" ng-show="$ctrl.newPost.image_url.$dirty && $ctrl.newPost.image_url.$invalid">
+                        <small class="error" ng-show="$ctrl.newPost.image_url.$error.required">
+                            Image URL is required.
+                        </small>
+                        <small class="error" ng-show="$ctrl.newPost.image_url.$error.minlength">
+                            Image URL is required to be at least 3 characters
+                        </small>
+                    </div>
+                </div>
+
+                <!---------   SUBMIT BUTTON    --------->
+                <div class="form-group">
+                    <button ng-click="$ctrl.createPost(newPost)" ng-disabled="$ctrl.newPost.$invalid" type="submit" class="btn btn-primary">
+                      Create Post
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-------------      POSTS         -------------->
+    <div ng-repeat="post in $ctrl.posts | filter:searchText | orderBy: $ctrl.sortBy track by $index" class="row">
+        <div class="col-md-12">
+            <div class="well">
+                <div class="media-left">
+                    <img class="media-object" src="{{post.image_url}}" width="300">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                      <a ui-sref='editPost({id: post.id})'>{{post.title}} |</a>
+                      <a><i class="glyphicon glyphicon-arrow-up" ng-click="$ctrl.upVote(post)"></i></a>
+                      <a><i class="glyphicon glyphicon-arrow-down" ng-click="$ctrl.downVote(post)"></i></a>{{post.vote_count}}
+                      <div class="pull-right"><a><i class="glyphicon glyphicon-trash" ng-click="$ctrl.removePost(post, $index)"></i></a></div>
+                    </h4>
+                    <div class="text-right">{{post.author}}</div>
+                    <p>{{post.body}}</p>
+                    <div>
+                      <span am-time-ago="post.created_at">{{post.created_at}}</span>
+<!----------------------------- COMMENTS   -------------------------------->
+                        <i class="glyphicon glyphicon-comment"></i>
+                        <a ng-click="$ctrl.toggleComments(post)">
+                          <ng-pluralize count="post.comments.length"
+                             when="{'0': ' No Comments.',
+                                 'one': ' {{post.comments.length}} Comment',
+                                 'other': ' {{post.comments.length}} Comments'}">
+                          </ng-pluralize></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <hr>
+                              <p ng-repeat="comment in post.comments track by $index" ng-show="post.showComments">{{ comment.content + " "}}<a><i class="glyphicon glyphicon-trash" ng-click="$ctrl.removeComment(post, comment)"></i></a></p>
+                            <form class="form-inline" ng-submit="$ctrl.addComment(post)">
+                                <div class="form-group">
+                                    <input class="form-control" ng-model="post.comments.newComment.content" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
