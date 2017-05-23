@@ -34,15 +34,11 @@ router.route('/signup')
         //Passing the user that met the where clause into a callback function
         .then((user) => {
           console.log("User:", user);
-          console.log("Req.session", req.session);
           //Creating a session for the newly created user
-          req.session = {};
           req.session.user_id = user.id;
+          console.log(req.session);
           //Redirecting the logged in user to the home page for now
           res.json(req.session);
-          // res.render('statics/home', {
-          //   loggedIn: true
-          // });
         })
         //Error handling
         .catch((err) => {
@@ -52,8 +48,43 @@ router.route('/signup')
       //If the user doesn't supply an email and a password
     } else {
       //Render the registration page
-      res.send('Something went wrong');
+      res.send('Username and password required');
     }
+  });
+
+router.route('/login')
+  .get((req, res) => {
+    // res.render('auth/login');
+  })
+  .post((req, res) => {
+    knex('users')
+      .where('user_name', req.body.user_name)
+      .first()
+      .then((user) => {
+        if (user) {
+          let matches = bcrypt.compareSync(req.body.password, user.password);
+          if (matches) {
+            req.session.user_id = user.id;
+            console.log(req.session);
+            // res.render('statics/home', {
+            //   loggedIn: true
+            // });
+          }
+        } else {
+          // res.redirect('/register');
+        }
+      })
+      .catch(err => {
+        res.locals.error = err
+        res.send(err);
+      });
+  });
+
+router.route('/logout')
+  .get((req, res) => {
+    req.session = null;
+    console.log("Req.session", req.session);
+    res.redirect('/');
   });
 
 module.exports = router;

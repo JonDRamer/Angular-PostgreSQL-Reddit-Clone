@@ -5,7 +5,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const session = require('cookie-session');
 
@@ -24,17 +24,17 @@ app.use(morgan('tiny'));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '/../', 'node_modules')));
-
-app.use('/api/posts', require('./routes/posts'));
-app.use('/api/posts', require('./routes/comments'));
-app.use('/api/users', require('./routes/users'));
-
 app.use(cookieParser());
 app.use(session({
   name: 'session',
   secret: 'user_id',
   maxAge: 24 * 60 * 60 * 1000
 }));
+
+app.use('/api/posts', require('./routes/posts'));
+app.use('/api/posts', require('./routes/comments'));
+app.use('/api/users', require('./routes/users'));
+
 
 app.use('*', (req, res) => {
   res.sendFile('index.html', {
