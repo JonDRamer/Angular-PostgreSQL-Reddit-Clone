@@ -7,14 +7,12 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
-const session = require('cookie-session');
+const cookieSession = require('cookie-session');
+require('dotenv')
+  .load();
 
 const app = express();
 
-// if (process.env.NODE_ENV !== 'test') {
-//   const logger = require('morgan');
-//   app.use(logger('dev'));
-// }
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -22,14 +20,20 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(morgan('tiny'));
 app.use(methodOverride("_method"));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, '/../', 'node_modules')));
 app.use(cookieParser());
-app.use(session({
+app.use(cookieSession({
   name: 'session',
-  secret: 'user_id',
+  // keys: [
+  //   process.env.SESSION_KEY1,
+  //   process.env.SESSION_KEY2,
+  //   process.env.SESSION_KEY3
+  // ],
+  secret: 'userId',
   maxAge: 24 * 60 * 60 * 1000
 }));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/../', 'node_modules')));
 
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/posts', require('./routes/comments'));
@@ -55,4 +59,4 @@ app.use((err, req, res) => {
   res.json(err);
 });
 
-module.exports = app;
+module.exports = app;;
