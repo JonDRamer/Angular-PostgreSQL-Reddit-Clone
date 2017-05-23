@@ -36,6 +36,7 @@ router.route('/signup')
           console.log("User:", user);
           console.log("Req.session", req.session);
           //Creating a session for the newly created user
+          req.session = {};
           req.session.user_id = user.id;
           //Redirecting the logged in user to the home page for now
           res.json(req.session);

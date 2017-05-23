@@ -11,10 +11,10 @@ const session = require('cookie-session');
 
 const app = express();
 
-if (process.env.NODE_ENV !== 'test') {
-  const logger = require('morgan');
-  app.use(logger('dev'));
-}
+// if (process.env.NODE_ENV !== 'test') {
+//   const logger = require('morgan');
+//   app.use(logger('dev'));
+// }
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
