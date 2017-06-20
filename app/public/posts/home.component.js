@@ -50,6 +50,7 @@
     };
 
     vm.addComment = function(post) {
+      console.log(post.comments.newComment);
       $http.post(`/api/posts/${post.id}/comments`, post.comments.newComment)
         .then(() => {
           $http.get("/api/posts")
