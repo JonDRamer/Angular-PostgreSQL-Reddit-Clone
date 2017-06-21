@@ -9,3 +9,7 @@
 ### Edit Post View
 
 ![Edit Page Screenshot](https://github.com/JonDRamer/Angular-PostgreSQL-Reddit-Clone/blob/master/screenshots/Edit%20Post.png)
+
+### New Post Form
+
+![New Post Form Screenshot]()
