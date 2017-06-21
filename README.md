@@ -12,4 +12,7 @@
 
 ### New Post Form
 
-![New Post Form Screenshot]()
+![New Post Form Screenshot](https://github.com/JonDRamer/Angular-PostgreSQL-Reddit-Clone/blob/master/screenshots/New%20Post%20Form.png)
+
+### Filter View
+![Filter Screenshot]()
