@@ -1,6 +1,6 @@
 # Full-stack Reddit Clone
 
-## Technologies used:
+### Technologies used:
 
 ###### Node.js
 ###### Express
@@ -9,6 +9,8 @@
 ###### KnexJS - a SQL query builder
 ###### Bootstrap - to help with styling
 
+
+## App Walkthrough
 
 
 
