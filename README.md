@@ -1,6 +1,16 @@
-# Reddit Clone With Server
+# Full-stack Reddit Clone
 
-## App Overview
+###### Technologies used:
+
+###### Node.js
+###### Express
+###### AngularJS
+###### PostgreSQL
+###### KnexJS - a SQL query builder
+###### Bootstrap - to help with styling
+
+
+
 
 ### Posts View
 

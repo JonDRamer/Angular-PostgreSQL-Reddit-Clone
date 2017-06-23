@@ -18,10 +18,10 @@ router.post('/:post_id/comments', validate, (req, res, next) => {
   knex('comments')
     .insert({
       content: req.body.content,
-      post_id: req.params.post_id
+      post_id: req.body.post_id
     })
     .where({
-      post_id: req.params.post_id
+      post_id: req.body.post_id
     })
     .returning('*')
     .then(comments => res.json(comments[0]))

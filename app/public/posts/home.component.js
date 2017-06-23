@@ -50,12 +50,14 @@
     };
 
     vm.addComment = function(post) {
+      post.comments.newComment.post_id = post.id;
       console.log(post.comments.newComment);
       $http.post(`/api/posts/${post.id}/comments`, post.comments.newComment)
         .then(() => {
           $http.get("/api/posts")
             .then((posts) => {
               vm.posts = posts.data;
+              console.log(vm.posts);
               vm.posts.forEach((post) => {
                 post.showComments = true;
               });
