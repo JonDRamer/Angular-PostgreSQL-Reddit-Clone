@@ -11,7 +11,7 @@
 
 ### Description
 
-###### This Reddit Clone was my first ever Angular application. It is a full-stack CRUD application.  I made this during the third quarter of my 6 month full-stack web development immersive program and I had one week window to complete this project.
+###### This Reddit Clone was my first ever Angular application. It is a full-stack CRUD application.  I made this during the third quarter of a 6 month full-stack web development immersive program and I had one week window to complete this project.
 
 ### Key Takeaways
 
@@ -23,7 +23,7 @@
 
 ### Posts View
 
-###### From here you can view all of the posts in your feed.  You can how long ago the post was made.  You can also see how many up-votes and comments a post has received.  
+###### From here you can view all of the posts in your feed.  You can see how long ago the post was made.  You can also see how many up-votes and comments a post has received.  
 
 ![App Screenshot](https://github.com/JonDRamer/Angular-PostgreSQL-Reddit-Clone/blob/master/screenshots/Reddit%20Clone.png)
 
@@ -35,12 +35,12 @@
 
 ### New Post Form
 
-###### With the new post form a user can create a new post.  As you can see in this screenshot forms turn red until they are considered valid.  The create post button is also disabled until the entire form is considered valid.  Users are prompted with validation messages that inform them of the criteria they must meet to validate each field.  Once the field is valid it will turn green to notify the user that they have met the criteria for the field.  
+###### With the new post form a user can create a new post.  As you can see in this screenshot the fields turn red until they are considered valid.  The create post button is also disabled until the entire form is considered valid.  Users are prompted with validation messages that inform them of the criteria they must meet to validate each field.  Once the field is valid it will turn green to notify the user that they have met the criteria for the field.  Finally once the entire form is valid the create post button is enabled.
 
 ![New Post Form Screenshot](https://github.com/JonDRamer/Angular-PostgreSQL-Reddit-Clone/blob/master/screenshots/New%20Post%20Form.png)
 
-### Filter View
+### Filter/Search View
 
-###### Users can also filter their feed using the Sort By button.  Users can sort the post in chronological or reverse chronological order.  They can also sort by total votes or by post title.  The posts will be dynamically sorted once a selection is made.
+###### Users can filter their feed using the Sort By button.  Users can sort  posts in chronological or reverse chronological order.  They can also sort by total votes or by post title.  The posts will be dynamically sorted once a selection is made. Users can also type in the search field to dynamically search for a post.  The user will only be shown the post(s) that match their search criteria.
 
 ![Filter Screenshot](https://github.com/JonDRamer/Angular-PostgreSQL-Reddit-Clone/blob/master/screenshots/Filter.png)
