@@ -1,6 +1,6 @@
 # Full-stack Reddit Clone
 
-###### Technologies used:
+### Technologies used:
 
 ###### Node.js
 ###### Express
