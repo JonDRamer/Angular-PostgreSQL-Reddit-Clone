@@ -1,4 +1,4 @@
-# Full-stack Reddit Clone
+# Full-Stack Reddit Clone
 ![App Screenshot](https://github.com/JonDRamer/Angular-PostgreSQL-Reddit-Clone/blob/master/screenshots/Reddit.png)
 
 ### Technologies used:
