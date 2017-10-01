@@ -14,7 +14,7 @@ router.get('/:post_id/comments', (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.post('/:post_id/comments', validate, (req, res, next) => {
+router.post('/:post_id/comments', (req, res, next) => {
   knex('comments')
     .insert({
       content: req.body.content,
