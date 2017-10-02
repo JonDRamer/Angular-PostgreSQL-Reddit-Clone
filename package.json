@@ -1,12 +1,8 @@
 {
-  "name": "angular-drill",
+  "name": "reddit-clone",
   "version": "1.0.0",
-  "description": "",
+  "description": "An improved ui for reddit",
   "scripts": {
-    "postinstall": "webdriver-manager update && sh ./setup.sh",
-    "test-e2e": "NODE_ENV=test protractor test/e2e/conf.js",
-    "test-server": "NODE_ENV=test mocha test/server",
-    "test": "npm run test-server; npm run test-e2e",
     "start": "gulp"
   },
   "keywords": [],
