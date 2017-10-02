@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const knex = require('../db');
+const knex = require('../../db/knex');
 
 router.get('/', (req, res, next) => {
   knex('posts')
@@ -24,7 +24,7 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.post('/', validate, (req, res, next) => {
+router.post('/', (req, res, next) => {
   knex('posts')
     .insert(params(req))
     .returning('*')
@@ -42,7 +42,7 @@ router.get('/:id', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.patch('/:id', validate, (req, res, next) => {
+router.patch('/:id', (req, res, next) => {
   knex('posts')
     .update(params(req))
     .where({
@@ -107,21 +107,4 @@ function params(req) {
   }
 }
 
-function validate(req, res, next) {
-  const errors = [];
-  ['title', 'body', 'author', 'image_url'].forEach(field => {
-    if (!req.body[field] || req.body[field].trim() === '') {
-      errors.push({
-        field: field,
-        messages: ["cannot be blank"]
-      })
-    }
-  })
-  if (errors.length) return res.status(422)
-    .json({
-      errors
-    })
-  next()
-}
-
-module.exports = router
+module.exports = router;
