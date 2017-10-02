@@ -4,7 +4,7 @@
   angular.module("app")
     .component("reddit", {
       controller: controller,
-      templateUrl: '../posts/home.template.html'
+      templateUrl: './home.template.html'
     });
 
   controller.$inject = ['$http'];
