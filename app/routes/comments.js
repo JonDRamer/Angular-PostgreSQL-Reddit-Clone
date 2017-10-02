@@ -28,7 +28,7 @@ router.post('/:post_id/comments', (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.patch('/:post_id/comments/:id', validate, (req, res, next) => {
+router.patch('/:post_id/comments/:id', (req, res, next) => {
   knex('comments')
     .update({
       content: req.body.content
