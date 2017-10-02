@@ -1,0 +1,21 @@
+label {
+  margin: 5px;
+}
+
+input {
+  margin-bottom: 5px;
+}
+
+.postCard {
+  background-color: #F7F7F7;
+  margin: 10px;
+  padding-top: 25px;
+}
+
+.media-body {
+  padding: 10px;
+}
+
+.form-group {
+  /*margin: 0px;*/
+}

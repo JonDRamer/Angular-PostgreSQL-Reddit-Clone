@@ -111,10 +111,10 @@
 
     <!-------------      POSTS         -------------->
     <div ng-repeat="post in $ctrl.posts | filter:searchText | orderBy: $ctrl.sortBy track by $index" class="row">
-        <div class="col-md-12">
-            <div class="well">
-                <div class="media-left">
-                    <img class="media-object" ng-src="{{post.image_url}}" width="300">
+        <div class="col-xs-12">
+            <div class="postCard media">
+                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 col-xl-3 media-left media">
+                    <img class="media-object" ng-src="{{post.image_url}}" width="200">
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">
@@ -137,8 +137,7 @@
                           </ng-pluralize></a>
                     </div>
                     <div class="row">
-                        <div class="col-md-offset-1">
-                            <hr>
+                        <div class="col-xs-12">
                               <p ng-repeat="comment in post.comments track by $index" ng-show="post.showComments">{{ comment.content + " "}}<a><i class="glyphicon glyphicon-trash" ng-click="$ctrl.removeComment(post, comment)"></i></a></p>
                             <form class="form-inline" ng-submit="$ctrl.addComment(post)">
                                 <div class="form-group">
@@ -152,7 +151,7 @@
                     </div>
                 </div>
             </div>
+        </div><!-- END OF POSTS CONTAINER -->
+    </div><!-- END OF POSTS ROW -->
 
-        </div>
-    </div>
 </main>
