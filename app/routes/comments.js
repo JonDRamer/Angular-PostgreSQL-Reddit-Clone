@@ -53,23 +53,4 @@ router.delete('/:post_id/comments/:id', (req, res, next) => {
     .catch(err => next(err));
 });
 
-function validate(req, res, next) {
-  const errors = [];
-  ['content'].forEach(field => {
-    if (!req.body[field] || req.body[field].trim() === '') {
-      errors.push({
-        field,
-        messages: ["cannot be blank"]
-      });
-    }
-  });
-  if (errors.length) {
-    return res.status(422)
-      .json({
-        errors
-      })
-    next();
-  }
-}
-
 module.exports = router;
