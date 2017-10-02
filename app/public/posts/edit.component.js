@@ -4,7 +4,7 @@
   angular.module("app")
     .component("edit", {
       controller: controller,
-      templateUrl: './edit.template.html'
+      templateUrl: 'edit.template.html'
     });
 
   controller.$inject = ['$http', '$stateParams', '$state'];
